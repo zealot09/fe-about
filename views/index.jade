@@ -3,4 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  svg
+    defs
+      clipPath#clipping
+         circle(cx="100" cy="100" r="100")
+  img(src="/images/share-btn.jpg", width="200")       
   #container

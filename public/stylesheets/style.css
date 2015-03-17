@@ -6,3 +6,15 @@ body {
 a {
   color: #00B7FF;
 }
+
+/***social share css****/
+img {
+  clip-path: url(#clipping);
+  position: absolute;
+  /*clip: rect(10px, 290px, 190px, 10px);*/
+}
+
+
+#container{
+
+}

@@ -11,7 +11,7 @@ define(["jQuery"], function () {
  */
 var SocialShare = function(config) {
    this.config = config || {};
-   
+
 }
 //render the share buttons with circle
 SocialShare.prototype.circleRender = function(first_argument) {
@@ -20,5 +20,17 @@ SocialShare.prototype.circleRender = function(first_argument) {
 //render the share buttons with line
 SocialShare.prototype.lineRender = function () {
 		
+}
+
+var initialize = function(config) {
+       var host = config.host || 'body';
+       host = $(host);
+       //add the host image and svg
+       host.append('')
+       host.append('')
+}
+
+return {
+    initialize:  initialize
 }
 });
