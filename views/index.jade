@@ -2,10 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
   //- svg
   //-   defs
   //-     clipPath#clipping
   //-        circle(cx="100" cy="100" r="100")
   //- img(src="/images/share-btn.jpg", width="200")       
-  #container(data-share-github="/images/github.png" data-github-url="http://www.baidu.com" data-share-pinterest="/images/pinterest.png" data-pinterest-url="http://www.baidu.com")
+  #container.socialShare(data-src="/images/share-btn.jpg" data-share-github="/images/github.png" data-github-url="http://www.baidu.com" data-share-pinterest="/images/pinterest.png" data-pinterest-url="http://www.baidu.com")
