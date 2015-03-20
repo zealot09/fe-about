@@ -1,4 +1,4 @@
-define(["jQuery", "underscore"], function () {
+define(["jquery", "underscore"], function () {
 	var stringFormat = function() {
         var args = arguments;
         if (!args.length) return "";
