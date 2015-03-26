@@ -15,8 +15,10 @@ define(["./util"], function(util) {
 		if (!this.el) return;
 		var renderType = this.config.renderType = this.el.data('render') ? this.el.data('render') : "line";
 		this.config.hostImgSrc = this.el.data('src');
-		this.config.arcStart = this.el.data('arcStart') ? this.el.data('arcStart'): 180;
-		this.config.gap = this.el.data('gap') ? this.el.data('gap'): 50;
+		this.config.arcStart = this.el.data('arcStart') ? parseInt(this.el.data('arcStart')): 180;
+		this.config.arcLength = this.el.data("arcLength") ? parseInt(this.el.data('arcLength')) : 180;
+		this.config.gap = this.el.data('gap') ? parseInt(this.el.data('gap')): 50;
+		this.config.radius = this.el.data('radius')? parseInt(el.data('radius')) : 80;
 		console.log(this.el);
 		var shareMainBtn = [
 				'<a class="smain disabled" title="click to show share panel" alt="click to show share panel">',
@@ -73,8 +75,51 @@ define(["./util"], function(util) {
 
 
 	SocialShare.prototype.circleRender = function() {
-		console.log('circleRender')
-		console.log(this);
+		// console.log('circleRender')
+		if($(this.el).hasClass('disabled')) return;
+		var el = $(this.el),
+			gap = this.config.gap,
+			arcLength = this.config.arcLength,
+			radius = this.config.radius,
+			arcStart = this.config.arcStart;
+		var delayTime = 250, t = 250, r = el.find('.sbutton').length, i = delayTime + (r - 1) * t, s = 0;
+                        	var triggleWidth = el.outerWidth(), triggleHeight = el.outerHeight();
+                        	var btnWidth = el.find('.sbutton:eq(0)').outerWidth(), btnHeight = el.find('.sbutton:eq(0)').outerHeight();
+                        	var p = (triggleWidth - btnWidth) / 2, d = (triggleHeight - btnHeight) / 2;
+                        if (!el.hasClass('active')) {
+                            el.addClass('disabled').delay(i).queue(function(e) {
+                                el.removeClass('disabled').addClass('active');
+                                e();
+                            });
+                            var v = arcLength / r, m = arcStart + v / 2;
+                            el.find('.sbutton').each(function() {
+                                var n = m / 180 * Math.PI, r = p + radius * Math.cos(n), i = d + radius * Math.sin(n);
+                                $(this).css({
+                                    display: 'block',
+                                    left: p + 'px',
+                                    top: d + 'px'
+                                }).stop().delay(t * s).animate({
+                                    left: r + 'px',
+                                    top: i + 'px'
+                                }, delayTime);
+                                m += v;
+                                s++;
+                            });
+                        }
+                        else {
+                            s = r - 1;
+                            el.addClass('disabled').delay(i).queue(function(e) {
+                                el.removeClass('disabled').removeClass('active');
+                                e();
+                            });
+                            el.find('.sbutton').each(function() {
+                                $(this).stop().delay(t * s).animate({
+                                    left: p,
+                                    top: d
+                                }, delayTime);
+                                s--;
+                            });
+                        }	
 	};
 	//render the share buttons with line
 	SocialShare.prototype.lineRender = function() {
@@ -130,6 +175,10 @@ define(["./util"], function(util) {
 			});
 
 		}
+	}
+	//render the share buttons line right
+	SocialShare.prototype.lineRightRender = function() {
+
 	}
 
 	var initialize = function(el, config) {
