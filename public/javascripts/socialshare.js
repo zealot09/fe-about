@@ -68,8 +68,17 @@ define(["./util"], function(util) {
 		//render the share buttons with circle
 		//el.find('.smain').click(renderType === 'line' ? this.lineRender : this.circleRender);
 		el.find('.smain').click(function() {
-			if(renderType ==='line')  me.lineRender()
-			else  me.circleRender();
+			switch (renderType) {
+				case "line":
+					me.lineRender();
+				break;
+				case "lineRight":
+					me.lineRightRender();
+				break;
+				case "circle":
+					me.circleRender();
+				break;
+			}
 		});
 	}
 
@@ -178,8 +187,48 @@ define(["./util"], function(util) {
 	}
 	//render the share buttons line right
 	SocialShare.prototype.lineRightRender = function() {
+		if ($(this.el).hasClass('disabled')) return;
+		var el = $(this.el),
+			gap = this.config.gap,
+			arcStart = this.config.arcStart;
 
-	}
+                        var delayTime = 500, t = 250, r = el.find('.sbutton').length, i = gap, s = delayTime + (r - 1) * t, o = 1;
+                        var triggleWidth = $(el).outerWidth(), triggleHeight = $(el).outerHeight();
+                        var btnWidth = el.find('.sbutton:eq(0)').outerWidth(), btnHeight = el.find('.sbutton:eq(0)').outerHeight();
+                        var p = (triggleWidth - btnWidth) / 2, d = (triggleHeight - btnHeight) / 2, v = arcStart / 180 * Math.PI;
+                        if (!el.hasClass('active')) {
+                            el.addClass('disabled').delay(s).queue(function(e) {
+                                el.removeClass('disabled').addClass('active');
+                                e();
+                            });
+                            el.find('.sbutton').each(function() {
+                                var n = p + (p + i * o) * Math.cos(v), r = d + (d + i * o) * Math.sin(v);
+                                $(this).css({
+                                    display: 'block',
+                                    left: p + 'px',
+                                    top: d + 'px'
+                                }).stop().delay(t * o).animate({
+                                    left: n + 'px',
+                                    top: r + 'px'
+                                }, delayTime);
+                                o++;
+                            });
+                        }
+                        else {
+                            o = r;
+                            el.addClass('disabled').delay(s).queue(function(e) {
+                                el.removeClass('disabled').removeClass('active');
+                                e();
+                            });
+                            el.find('.sbutton').each(function() {
+                                $(this).stop().delay(t * o).animate({
+                                    left: p,
+                                    top: d
+                                }, delayTime);
+                                o--;
+                            });
+                        }
+              }
 
 	var initialize = function(el, config) {
 		return new SocialShare($(el), config || {});

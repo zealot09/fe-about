@@ -12,7 +12,7 @@ a {
 }
 
 /***social share css****/
-.socialShare{width: 72px; height: 72px; display: block; position: absolute;}
+.socialShare{width: 72px; height: 72px; display: block; position: absolute;left: 100px;}
 .socialShare img{width: 64px; height: 64px;cursor: pointer;border: 0;}
 .socialShare .smain {
   display: block;
