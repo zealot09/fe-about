@@ -1,10 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  //- svg
-  //-   defs
-  //-     clipPath#clipping
-  //-        circle(cx="100" cy="100" r="100")
-  //- img(src="/images/share-btn.jpg", width="200")       
-  #container.socialShare(data-render="circle" data-arcstart="180" data-radius="100" data-src="/images/share-btn.jpg" data-share-github="/images/github.png" data-github-url="http://www.baidu.com" data-share-pinterest="/images/pinterest.png" data-pinterest-url="http://www.baidu.com")
+  h1= title   
+  #container.socialShare(data-render="circle" 
+  	data-arcstart="180" 
+  	data-delayGap="100"
+  	data-radius="100" 
+  	data-src="/images/share-btn.jpg" 
+  	data-share-weibo="/images/weibo.png" 
+  	data-weibo-url="http://www.baidu.com" 
+  	data-share-renren="/images/renren.png" 
+  	data-renren-url="http://www.baidu.com" 	
+  	data-share-douban="/images/douban.png" 
+  	data-douban-url="http://www.baidu.com" 	
+  	data-share-tencent="/images/tencent.png" 
+  	data-tencent-url="http://www.baidu.com")
