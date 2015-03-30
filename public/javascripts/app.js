@@ -7,8 +7,6 @@ require.config({
     }
 });
 
-require(["jquery", "./socialshare"], function ($, socialshare) {
-	$(document).ready(function() {
-		socialshare.initialize('#container');
-	});
+require(["jquery", "./h5-socialshare"], function ($, socialshare) {
+	socialshare.initialize('.socialShare');
 });

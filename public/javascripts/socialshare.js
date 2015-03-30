@@ -43,7 +43,7 @@ define(["./util"], function(util) {
 				});
 			}
 		}
-		console.log(JSON.stringify(shareBtnData));
+		//console.log(JSON.stringify(shareBtnData));
 
 		//build the social share tree declarative
 		var shareBtnDom = '';
@@ -221,39 +221,10 @@ define(["./util"], function(util) {
 		var p = (triggleWidth - btnWidth) / 2,
 			d = (triggleHeight - btnHeight) / 2,
 			v = arcStart / 180 * Math.PI;
-		if (!el.hasClass('active')) {
-			el.addClass('disabled').delay(s).queue(function(e) {
-				el.removeClass('disabled').addClass('active');
-				e();
-			});
-			el.find('.sbutton').each(function() {
-				console.log(Math.cos(v));
-				var n = p + (p + i * o) * Math.cos(v),
-					r = d + (d + i * o) * Math.sin(v);
-				console.log("render left = " + n + "; top = " + r);
-				$(this).css({
-					display: 'block',
-					left: p + 'px',
-					top: d + 'px'
-				}).stop().delay(t * o).animate({
-					left: n + 'px',
-					top: r + 'px'
-				}, delayTime);
-				o++;
-			});
+		if (!/active/g.test(el.className)) {
+			//animate with javascript
 		} else {
-			o = r;
-			el.addClass('disabled').delay(s).queue(function(e) {
-				el.removeClass('disabled').removeClass('active');
-				e();
-			});
-			el.find('.sbutton').each(function() {
-				$(this).stop().delay(t * o).animate({
-					left: p,
-					top: d
-				}, delayTime);
-				o--;
-			});
+			//animate with css transform
 		}
 	}
 
