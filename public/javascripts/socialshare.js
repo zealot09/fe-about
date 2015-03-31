@@ -16,9 +16,9 @@ define(["./util"], function(util) {
 		if (!this.el) return;
 		var renderType = this.config.renderType = this.el.data('render') ? this.el.data('render') : "line";
 		this.config.hostImgSrc = this.el.data('src');
-		this.config.arcStart = typeof this.el.data('arcstart') !== 'undefined'? parseInt(this.el.data('arcstart')) : 180;
-		this.config.arcLength = typeof this.el.data("arclength") !== 'undefined'? parseInt(this.el.data('arclength')) : 180;
-		this.config.gap = typeof this.el.data('gap') !== 'undefined'? parseInt(this.el.data('gap')) : 50;
+		this.config.arcStart = typeof this.el.data('arcstart') !== 'undefined' ? parseInt(this.el.data('arcstart')) : 180;
+		this.config.arcLength = typeof this.el.data("arclength") !== 'undefined' ? parseInt(this.el.data('arclength')) : 180;
+		this.config.gap = typeof this.el.data('gap') !== 'undefined' ? parseInt(this.el.data('gap')) : 50;
 		this.config.radius = typeof this.el.data('radius') !== 'undefined' ? parseInt(el.data('radius')) : 80;
 		this.config.delayTime = typeof this.el.data('delaytime') !== 'undefined' ? parseInt(this.el.data('delaytime') !== 'undefined') : 500;
 		this.config.delayGap = typeof this.el.data('delaygap') !== 'undefined' ? parseInt(typeof this.el.data('delaygap')) : 250;
